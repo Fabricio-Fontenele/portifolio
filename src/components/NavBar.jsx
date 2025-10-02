@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "@/hooks/useTheme";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -13,6 +14,7 @@ const navItems = [
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isDarkTheme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +33,7 @@ export const Navbar = () => {
     >
       <div className="container flex items-center justify-between">
         <a
-          className="text-xl font-bold text-primary flex items-center"
+          className="text-xl font-bold text-primary flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300"
           href="#hero"
         >
           <span className="relative z-10">
@@ -41,7 +43,7 @@ export const Navbar = () => {
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item, key) => (
             <a
               key={key}
@@ -51,6 +53,17 @@ export const Navbar = () => {
               {item.name}
             </a>
           ))}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-accent transition-colors duration-300 cursor-pointer"
+            aria-label="Toggle theme"
+          >
+            {isDarkTheme ? (
+              <Sun className="h-5 w-5 text-yellow-300" />
+            ) : (
+              <Moon className="h-5 w-5 text-blue-900" />
+            )}
+          </button>
         </div>
 
         {/* mobile nav */}
@@ -83,6 +96,26 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
+            <button
+              onClick={() => {
+                toggleTheme();
+                setIsMenuOpen(false);
+              }}
+              className="flex items-center space-x-2 text-foreground/80 hover:text-primary transition-colors duration-300 text-xl cursor-pointer"
+              aria-label="Toggle theme"
+            >
+              {isDarkTheme ? (
+                <>
+                  <Sun className="h-6 w-6 text-yellow-300" />
+                  <span>Light Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="h-6 w-6 text-blue-900" />
+                  <span>Dark Mode</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>
