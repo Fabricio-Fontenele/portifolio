@@ -47,12 +47,12 @@ export const ContactSection = () => {
             <h3 className="text-2xl font-semibold mb-6">
               Informações de Contato
             </h3>
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
+            <div className="space-y-6">
+              <div className="flex items-center space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
-                <div>
+                <div className="text-left">
                   <h4 className="font-medium">Email</h4>
                   <a
                     target="_blank"
@@ -63,11 +63,11 @@ export const ContactSection = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
+              <div className="flex items-center space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Github className="h-6 w-6 text-primary" />
                 </div>
-                <div>
+                <div className="text-left">
                   <h4 className="font-medium">GitHub</h4>
                   <a
                     target="_blank"
@@ -78,11 +78,11 @@ export const ContactSection = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
+              <div className="flex items-center space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <LocateFixed className="h-6 w-6 text-primary" />
                 </div>
-                <div>
+                <div className="text-left">
                   <h4 className="font-medium">Localização</h4>
                   <a className="text-muted-foreground hover:text-primary transition-colors">
                     Parnaíba, PI - Brasil
@@ -104,72 +104,93 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
-            <h3 className="text-2xl font-semibold mb-6">Envie uma Mensagem</h3>
+          <div className="bg-card/50 backdrop-blur-sm border border-border/50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Send className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="text-2xl font-semibold">Envie uma Mensagem</h3>
+            </div>
 
-            <form className="space-y-6 ">
-              <div>
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div className="space-y-2">
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium mb-2"
+                  className="block text-sm font-medium text-foreground/80"
                 >
-                  Seu Nome
+                  Seu Nome *
                 </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="Jose da Silva..."
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 placeholder:text-muted-foreground/60"
+                    placeholder="Digite seu nome completo..."
+                  />
+                </div>
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium mb-2"
+                  className="block text-sm font-medium text-foreground/80"
                 >
-                  Seu Email
+                  Seu Email *
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
-                />
+                <div className="relative">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 placeholder:text-muted-foreground/60"
+                    placeholder="seu.email@exemplo.com"
+                  />
+                </div>
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium mb-2"
+                  className="block text-sm font-medium text-foreground/80"
                 >
-                  Sua Mensagem
+                  Sua Mensagem *
                 </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="Escreva sua mensagem aqui..."
-                />
+                <div className="relative">
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 resize-none placeholder:text-muted-foreground/60"
+                    placeholder="Conte-me sobre seu projeto, ideia ou como posso ajudá-lo..."
+                  />
+                </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
+                  "cosmic-button w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed",
+                  isSubmitting
+                    ? "bg-primary/80"
+                    : "bg-primary hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]"
                 )}
               >
-                {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
-                <Send size={16} />
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/20 border-t-white"></div>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    Enviar Mensagem
+                    <Send size={16} />
+                  </>
+                )}
               </button>
             </form>
           </div>
