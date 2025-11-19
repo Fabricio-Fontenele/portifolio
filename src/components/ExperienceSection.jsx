@@ -5,35 +5,35 @@ const experiences = [
     title: "Desenvolvedor Full Stack",
     company: "Freelancer",
     location: "Remoto",
-    period: "2023 - Presente",
+    period: "2024 - Presente",
     description:
       "Desenvolvimento de aplicações web completas usando React, Node.js e PostgreSQL. Foco em criar soluções escaláveis e modernas.",
     tags: ["React", "Node.js", "PostgreSQL", "TypeScript"],
     color: "from-blue-500 to-cyan-500",
   },
   {
+    title: "PET-Saúde Digital",
+    company: "UESPI",
+    location: "Parnaíba, PI",
+    period: "2025 - Presente",
+    description:
+      "Desenvolvimento de dashboards para auxiliar as Unidades Básicas de Saúde (UBS) na análise e visualização de dados. Atuando pela área de ciência de dados, análise estatística e geração de insights.",
+    tags: ["Python", "Django", "PostgreSQL", "Data Science"],
+    color: "from-green-500 to-emerald-600",
+  },
+  {
     title: "Estudante de Sistemas de Computação",
     company: "UESPI",
-    location: "Teresina, PI",
-    period: "2022 - Presente",
+    location: "Parnaíba, PI",
+    period: "2024 - Presente",
     description:
       "Aprofundando conhecimentos em algoritmos, estruturas de dados, arquitetura de software e ciência de dados.",
     tags: ["Python", "Algoritmos", "Data Science"],
     color: "from-purple-500 to-pink-500",
   },
-  {
-    title: "Projetos Pessoais",
-    company: "GitHub",
-    location: "Remoto",
-    period: "2022 - Presente",
-    description:
-      "Desenvolvimento de projetos open-source e portfólio, explorando novas tecnologias e melhores práticas de desenvolvimento.",
-    tags: ["Next.js", "Tailwind", "Docker", "Git"],
-    color: "from-orange-500 to-red-500",
-  },
 ];
 
-export const SkillsSection = () => {
+export const ExperienceSection = () => {
   return (
     <section id="experience" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">

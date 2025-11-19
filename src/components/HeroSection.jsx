@@ -1,5 +1,41 @@
 import { ArrowDown } from "lucide-react";
 
+const techStack = [
+  {
+    name: "Python",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  {
+    name: "TypeScript",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  },
+  {
+    name: "Node.js",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  },
+  {
+    name: "Next.js",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    darkIcon: true,
+  },
+  {
+    name: "React",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  },
+  {
+    name: "Git",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  },
+  {
+    name: "Docker",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  },
+  {
+    name: "PostgreSQL",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  },
+];
+
 export const HeroSection = () => {
   return (
     <section
@@ -18,13 +54,31 @@ export const HeroSection = () => {
               Fontenele
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            Estudante de Sistemas de Computação na UESPI e desenvolvedor Full
-            Stack em formação, apaixonado por tecnologia, UI/UX e soluções
-            modernas. Atualmente, focado em Python, Next.js e Node.js,
-            explorando também Ciência de Dados e buscando criar projetos
-            escaláveis e inteligentes.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+            Desenvolvedor Full Stack apaixonado por criar soluções modernas e
+            escaláveis.
           </p>
+
+          {/* Tech Stack Carousel */}
+          <div className="opacity-0 animate-fade-in-delay-4 overflow-hidden py-8">
+            <div className="flex gap-8 animate-scroll">
+              {[...techStack, ...techStack].map((tech, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  title={tech.name}
+                >
+                  <img
+                    src={tech.icon}
+                    alt={tech.name}
+                    className={`w-full h-full object-contain ${
+                      tech.darkIcon ? "invert dark:invert-0" : ""
+                    }`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
 
           <div className="opacity-0 animate-fade-in-delay-4">
             <a href="#projects" className="cosmic-button">

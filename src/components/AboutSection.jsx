@@ -10,22 +10,19 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
-              Desenvolvedor Full Stack em formação, explorando também o mundo da
-              Data Science.
+              Transformando ideias em código desde 2022
             </h3>
 
             <p className="text-muted-foreground">
-              Sou graduando em Sistemas de Computação pela Universidade Estadual
-              do Piauí, com conhecimentos em desenvolvimento web, banco de dados
-              e ciência de dados. Já participei de projetos acadêmicos e
-              pessoais, aplicando tecnologias como React, Node.js e Python para
-              criar soluções modernas.
+              Atualmente cursando Sistemas de Computação na UESPI, comecei minha
+              jornada na programação explorando Python e me apaixonei por criar
+              soluções que fazem diferença.
             </p>
 
-            <p>
-              Minha prática inclui modelagem de bancos de dados relacionais e
-              manipulação de dados com SQL, além do desenvolvimento de
-              aplicações web usando Node.js no back-end e React no front-end.
+            <p className="text-muted-foreground">
+              Hoje, desenvolvo aplicações full stack modernas, desde interfaces
+              elegantes até APIs robustas, sempre buscando escrever código limpo
+              e escalável.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -48,11 +45,10 @@ export const AboutSection = () => {
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="text-lg font-semibold">Desenvolvimento Web</h4>
+                  <h4 className="text-lg font-semibold">Frontend Moderno</h4>
                   <p className="text-sm text-muted-foreground">
-                    Criação de aplicações modernas e responsivas, utilizando
-                    frameworks como React e Next.js para entregar interfaces
-                    rápidas e intuitivas.
+                    Interfaces responsivas e intuitivas com React, Next.js e
+                    Tailwind CSS.
                   </p>
                 </div>
               </div>
@@ -63,11 +59,9 @@ export const AboutSection = () => {
                   <Server className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="text-lg font-semibold">Back-End & APIs</h4>
+                  <h4 className="text-lg font-semibold">Backend Robusto</h4>
                   <p className="text-sm text-muted-foreground">
-                    Construção de servidores e APIs escaláveis com Node.js e
-                    Express, focando em performance, segurança e integração
-                    entre sistemas.
+                    APIs escaláveis com Node.js, Express e PostgreSQL.
                   </p>
                 </div>
               </div>
@@ -78,13 +72,9 @@ export const AboutSection = () => {
                   <BarChart2 className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="text-lg font-semibold">
-                    Bancos de Dados & Data Science
-                  </h4>
+                  <h4 className="text-lg font-semibold">Data & Analytics</h4>
                   <p className="text-sm text-muted-foreground">
-                    Modelagem de bancos relacionais, consultas SQL e análise de
-                    dados com Python, transformando informações em soluções
-                    práticas e inteligentes.
+                    Análise e manipulação de dados com Python e SQL.
                   </p>
                 </div>
               </div>

@@ -9,26 +9,49 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    const formData = {
+      from_name: e.target.name.value,
+      from_email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      await emailjs.send(
+        "service_806db9t",
+        "template_8orlihb",
+        formData,
+        "9YKkeQAvUtpEcjtGx"
+      );
+
       toast({
         title: "Mensagem enviada!",
-        description: "Obrigado por entrar em contato. Responderemos em breve.",
+        description: "Obrigado por entrar em contato. Responderei em breve!",
         duration: 5000,
-        type: "success",
       });
-    }, 1500);
 
-    setIsSubmitting(false);
+      e.target.reset();
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar",
+        description:
+          "Algo deu errado. Tente novamente ou me envie um email direto.",
+        duration: 5000,
+        variant: "destructive",
+      });
+      console.error("Erro ao enviar email:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">

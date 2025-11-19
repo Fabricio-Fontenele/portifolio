@@ -16,7 +16,7 @@ import { useTheme } from "@/hooks/useTheme";
 const navItems = [
   { name: "Home", href: "#hero", icon: Home },
   { name: "Sobre", href: "#about", icon: User },
-  { name: "Skills", href: "#skills", icon: Code },
+  { name: "Experiências", href: "#experience", icon: Code },
   { name: "Projetos", href: "#projects", icon: Briefcase },
   { name: "Contato", href: "#contact", icon: Mail },
 ];
