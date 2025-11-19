@@ -27,10 +27,10 @@ export const ContactSection = () => {
 
     try {
       await emailjs.send(
-        "service_806db9t",
-        "template_8orlihb",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formData,
-        "9YKkeQAvUtpEcjtGx"
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       toast({
