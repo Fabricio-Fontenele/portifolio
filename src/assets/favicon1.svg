@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ffGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8A6BFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B46FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <text x="50%" y="50%"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="JetBrains Mono, Fira Mono, monospace"
+        font-size="400"
+        font-weight="800"
+        fill="url(#ffGradient)"
+        stroke="#5A3DD9"
+        stroke-width="8">
+    FF
+  </text>
+</svg>
