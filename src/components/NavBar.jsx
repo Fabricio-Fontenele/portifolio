@@ -93,7 +93,7 @@ export const Navbar = () => {
       className={cn(
         "fixed w-full z-50 transition-all duration-300",
         isScrolled
-          ? "py-3 bg-card/80 backdrop-blur-xl border-b border-border shadow-lg"
+          ? "py-3 bg-card/95 dark:bg-card/80 backdrop-blur-xl border-b border-border shadow-lg"
           : "py-4 bg-transparent"
       )}
     >
@@ -118,7 +118,7 @@ export const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-2">
-          <div className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-secondary/30 backdrop-blur-sm border border-border/50">
+          <div className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-muted dark:bg-secondary/30 backdrop-blur-sm border-2 border-border">
             {navItems.map((item, key) => {
               const isActive = activeSection === item.href.substring(1);
               return (
@@ -144,13 +144,13 @@ export const Navbar = () => {
 
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-full bg-secondary/30 backdrop-blur-sm border border-border/50 hover:bg-secondary/50 hover:border-primary/30 transition-all duration-300 ml-2 group"
+            className="p-2.5 rounded-full bg-muted dark:bg-secondary/30 backdrop-blur-sm border-2 border-border hover:bg-secondary/50 hover:border-primary/30 transition-all duration-300 ml-2 group"
             aria-label="Toggle theme"
           >
             {isDarkTheme ? (
               <Sun className="h-4 w-4 text-yellow-500 group-hover:rotate-45 transition-transform duration-300" />
             ) : (
-              <Moon className="h-4 w-4 text-slate-600 group-hover:-rotate-12 transition-transform duration-300" />
+              <Moon className="h-4 w-4 text-primary group-hover:-rotate-12 transition-transform duration-300" />
             )}
           </button>
         </div>

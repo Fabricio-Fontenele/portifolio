@@ -54,7 +54,10 @@ export const ContactSection = () => {
     }
   };
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
+    <section
+      id="contact"
+      className="py-24 px-4 relative bg-secondary/50 dark:bg-secondary/30"
+    >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           Entre em <span className="text-primary">contato</span>
@@ -71,7 +74,7 @@ export const ContactSection = () => {
               Informações de Contato
             </h3>
             <div className="space-y-6">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
@@ -86,7 +89,7 @@ export const ContactSection = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Github className="h-6 w-6 text-primary" />
                 </div>
@@ -101,7 +104,7 @@ export const ContactSection = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
                 <div className="p-3 rounded-full bg-primary/10">
                   <LocateFixed className="h-6 w-6 text-primary" />
                 </div>
@@ -127,7 +130,7 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-card backdrop-blur-sm border-2 border-border p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="p-2 rounded-lg bg-primary/10">
                 <Send className="h-5 w-5 text-primary" />

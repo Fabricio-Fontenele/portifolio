@@ -35,7 +35,10 @@ const experiences = [
 
 export const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-24 px-4 relative bg-secondary/30">
+    <section
+      id="experience"
+      className="py-24 px-4 relative bg-secondary/50 dark:bg-secondary/30"
+    >
       <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -68,7 +71,7 @@ export const ExperienceSection = () => {
                     index % 2 === 0 ? "md:pr-16" : "md:pl-16"
                   } pl-20 md:pl-0`}
                 >
-                  <div className="bg-card rounded-xl p-6 shadow-lg border border-border hover:border-primary/50 transition-all duration-300 group hover:scale-105">
+                  <div className="bg-card rounded-xl p-6 shadow-xl border-2 border-border hover:border-primary/50 transition-all duration-300 group hover:scale-105">
                     {/* Gradient Accent */}
                     <div
                       className={`h-1 w-20 rounded-full bg-gradient-to-r ${exp.color} mb-4`}

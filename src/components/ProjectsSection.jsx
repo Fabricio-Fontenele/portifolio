@@ -71,7 +71,7 @@ export const ProjectsSection = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 flex flex-col overflow-hidden"
+              className="group bg-card rounded-2xl border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 flex flex-col overflow-hidden"
             >
               {/* Header with gradient */}
               <div className="h-2 bg-gradient-to-r from-primary/80 via-primary to-primary/80" />

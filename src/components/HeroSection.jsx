@@ -65,14 +65,14 @@ export const HeroSection = () => {
               {[...techStack, ...techStack].map((tech, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-all duration-300 hover:scale-110 bg-card dark:bg-transparent rounded-lg p-2 border-2 border-border dark:border-transparent shadow-sm dark:shadow-none"
                   title={tech.name}
                 >
                   <img
                     src={tech.icon}
                     alt={tech.name}
                     className={`w-full h-full object-contain ${
-                      tech.darkIcon ? "invert dark:invert-0" : ""
+                      tech.darkIcon ? "dark:invert" : ""
                     }`}
                   />
                 </div>
