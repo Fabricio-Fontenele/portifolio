@@ -93,67 +93,64 @@ export const Navbar = () => {
       className={cn(
         "fixed w-full z-50 transition-all duration-300",
         isScrolled
-          ? "py-2 bg-background border-b border-border shadow-lg"
-          : "py-4 bg-background border-b border-border/50"
+          ? "py-3 bg-card/80 backdrop-blur-xl border-b border-border shadow-lg"
+          : "py-4 bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
         <a
-          className="text-xl font-bold flex items-center cursor-pointer hover:opacity-80 transition-all duration-300 relative z-50"
+          className="text-xl font-bold flex items-center cursor-pointer hover:scale-105 transition-all duration-300 relative z-50 group"
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
             handleNavClick("#hero");
           }}
         >
-          <span className="relative">
-            <span className="text-glow bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+          <span className="relative flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent font-bold">
               Fabricio
             </span>
-            <span className="text-foreground/80 ml-1 font-normal">
-              Portfolio
+            <span className="text-foreground/60 font-light text-base">
+              .dev
             </span>
           </span>
         </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-1">
-          {navItems.map((item, key) => {
-            const isActive = activeSection === item.href.substring(1);
-            return (
-              <a
-                key={key}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative",
-                  isActive
-                    ? "text-primary bg-primary/10 shadow-sm"
-                    : "text-foreground/70 hover:text-primary hover:bg-accent/50"
-                )}
-              >
-                {item.name}
-                {isActive && (
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary rounded-full"></div>
-                )}
-              </a>
-            );
-          })}
+        <div className="hidden md:flex items-center gap-2">
+          <div className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-secondary/30 backdrop-blur-sm border border-border/50">
+            {navItems.map((item, key) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <a
+                  key={key}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative",
+                    isActive
+                      ? "text-primary-foreground bg-primary shadow-md"
+                      : "text-foreground/70 hover:text-primary hover:bg-secondary/50"
+                  )}
+                >
+                  {item.name}
+                </a>
+              );
+            })}
+          </div>
 
-          {/* Theme Toggle Desktop */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-accent/50 transition-all duration-300 ml-2"
+            className="p-2.5 rounded-full bg-secondary/30 backdrop-blur-sm border border-border/50 hover:bg-secondary/50 hover:border-primary/30 transition-all duration-300 ml-2 group"
             aria-label="Toggle theme"
           >
             {isDarkTheme ? (
-              <Sun className="h-5 w-5 text-yellow-500" />
+              <Sun className="h-4 w-4 text-yellow-500 group-hover:rotate-45 transition-transform duration-300" />
             ) : (
-              <Moon className="h-5 w-5 text-slate-600" />
+              <Moon className="h-4 w-4 text-slate-600 group-hover:-rotate-12 transition-transform duration-300" />
             )}
           </button>
         </div>
@@ -200,14 +197,20 @@ export const Navbar = () => {
         {/* Mobile Menu */}
         <div
           className={cn(
-            "fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-background/95 backdrop-blur-lg border-l border-border/50 z-40 md:hidden mobile-menu",
+            "fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-card/95 backdrop-blur-xl border-l border-border shadow-2xl z-40 md:hidden mobile-menu",
             "transform transition-all duration-300 ease-in-out",
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           )}
         >
           <div className="flex flex-col h-full pt-20 pb-8 px-6">
-            {/* Mobile Navigation Links */}
-            <div className="flex-1 space-y-2">
+            <div className="mb-6 px-4">
+              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+                Navegação
+              </h3>
+              <div className="h-0.5 w-12 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+            </div>
+
+            <div className="flex-1 space-y-1">
               {navItems.map((item, key) => {
                 const Icon = item.icon;
                 const isActive = activeSection === item.href.substring(1);
@@ -221,43 +224,50 @@ export const Navbar = () => {
                       handleNavClick(item.href);
                     }}
                     className={cn(
-                      "flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
+                      "group flex items-center space-x-3 px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-300 relative overflow-hidden",
                       isActive
-                        ? "text-primary bg-primary/10 border border-primary/20 shadow-sm"
-                        : "text-foreground/70 hover:text-primary hover:bg-accent/50 border border-transparent"
+                        ? "text-primary bg-primary/10 shadow-sm"
+                        : "text-foreground/70 hover:text-primary hover:bg-secondary/50"
                     )}
                   >
-                    <Icon size={20} />
-                    <span>{item.name}</span>
+                    <div
+                      className={cn(
+                        "flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-300",
+                        isActive
+                          ? "bg-primary/20"
+                          : "bg-secondary/50 group-hover:bg-primary/10"
+                      )}
+                    >
+                      <Icon size={18} />
+                    </div>
+                    <span className="flex-1">{item.name}</span>
                     {isActive && (
-                      <div className="ml-auto w-2 h-2 bg-primary rounded-full"></div>
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full"></div>
                     )}
                   </a>
                 );
               })}
             </div>
 
-            {/* Mobile Theme Toggle */}
             <div className="pt-6 border-t border-border/50">
               <button
                 onClick={() => {
                   toggleTheme();
                   setIsMenuOpen(false);
                 }}
-                className="flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium text-foreground/70 hover:text-primary hover:bg-accent/50 transition-all duration-300 w-full"
+                className="flex items-center space-x-3 px-4 py-3.5 rounded-xl text-base font-medium text-foreground/70 hover:text-primary hover:bg-secondary/50 transition-all duration-300 w-full group"
                 aria-label="Toggle theme"
               >
-                {isDarkTheme ? (
-                  <>
+                <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-secondary/50 group-hover:bg-primary/10 transition-all duration-300">
+                  {isDarkTheme ? (
                     <Sun className="h-5 w-5 text-yellow-500" />
-                    <span>Modo Claro</span>
-                  </>
-                ) : (
-                  <>
+                  ) : (
                     <Moon className="h-5 w-5 text-slate-600" />
-                    <span>Modo Escuro</span>
-                  </>
-                )}
+                  )}
+                </div>
+                <span className="flex-1 text-left">
+                  {isDarkTheme ? "Modo Claro" : "Modo Escuro"}
+                </span>
               </button>
             </div>
           </div>

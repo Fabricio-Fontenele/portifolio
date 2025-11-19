@@ -26,8 +26,7 @@ const projects = [
       "Drizzle",
       "Stripe",
     ],
-    DemoUrl:
-      "https://ecommerce-1whq6ncqo-fabricio-fonteneles-projects.vercel.app/",
+    DemoUrl: "https://ecommerce-eight-rosy-36.vercel.app/",
     gitHubUrl: "https://github.com/Fabricio-Fontenele/Ecommerce.git",
   },
   {
