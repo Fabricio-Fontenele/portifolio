@@ -60,7 +60,7 @@ export const StarBackground = () => {
   };
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 dark:opacity-100 opacity-0 transition-opacity duration-300">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 dark:opacity-100 opacity-30 transition-opacity duration-300">
       {stars.map((star) => (
         <div
           key={star.id}

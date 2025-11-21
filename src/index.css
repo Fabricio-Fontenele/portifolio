@@ -73,22 +73,22 @@
 
 @layer base {
   :root {
-    --background: 240 20% 96%;
+    --background: 45 20% 92%;
     --foreground: 222 47% 10%;
 
-    --card: 0 0% 100%;
+    --card: 40 15% 98%;
     --card-foreground: 222 47% 10%;
 
     --primary: 250 70% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --border: 250 30% 80%;
+    --border: 250 30% 75%;
 
-    --muted: 240 20% 92%;
+    --muted: 45 15% 88%;
     --muted-foreground: 222 30% 35%;
 
     --accent: 280 70% 55%;
-    --secondary: 240 15% 90%;
+    --secondary: 45 15% 86%;
   }
 
   .dark {
@@ -125,11 +125,11 @@
   body:not(.dark) {
     background: linear-gradient(
       135deg,
-      hsl(240, 20%, 96%) 0%,
-      hsl(250, 30%, 94%) 25%,
-      hsl(260, 25%, 95%) 50%,
-      hsl(240, 20%, 96%) 75%,
-      hsl(250, 30%, 94%) 100%
+      hsl(45, 20%, 92%) 0%,
+      hsl(50, 18%, 90%) 25%,
+      hsl(40, 22%, 91%) 50%,
+      hsl(45, 20%, 92%) 75%,
+      hsl(50, 18%, 90%) 100%
     );
     background-attachment: fixed;
   }
@@ -183,9 +183,29 @@
   box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
 }
 
+.dark .star {
+  background: white !important;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4) !important;
+}
+
+body:not(.dark) .star {
+  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #3b82f6 100%);
+  box-shadow: 0 0 15px 3px rgba(6, 182, 212, 0.7);
+}
+
 @utility meteor {
   @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+}
+
+.dark .meteor {
+  background: linear-gradient(to right, white, white, transparent) !important;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3) !important;
+}
+
+body:not(.dark) .meteor {
+  background: linear-gradient(to right, #6366f1, #8b5cf6, #a855f7, transparent);
+  box-shadow: 0 0 20px 8px rgba(139, 92, 246, 0.6);
 }
 
 #root {
