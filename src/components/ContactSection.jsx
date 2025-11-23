@@ -11,9 +11,171 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
+const CONTACT_INFO = [
+  {
+    icon: Mail,
+    title: "Email",
+    value: "fabriciof.dev@gmail.com",
+    href: "mailto:fabriciof.dev@gmail.com",
+    external: true,
+  },
+  {
+    icon: Github,
+    title: "GitHub",
+    value: "Fabricio-Fontenele",
+    href: "https://github.com/Fabricio-Fontenele",
+    external: true,
+  },
+  {
+    icon: LocateFixed,
+    title: "Localização",
+    value: "Parnaíba, PI - Brasil",
+    href: null,
+    external: false,
+  },
+];
+
+const SOCIAL_LINKS = [
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/fabricio-fontenele-302975333/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/fabriciofontenele_/",
+    label: "Instagram",
+  },
+];
+
+const FORM_FIELDS = [
+  {
+    id: "name",
+    name: "name",
+    type: "text",
+    label: "Seu Nome",
+    placeholder: "Digite seu nome completo...",
+    required: true,
+  },
+  {
+    id: "email",
+    name: "email",
+    type: "email",
+    label: "Seu Email",
+    placeholder: "seu.email@exemplo.com",
+    required: true,
+  },
+  {
+    id: "message",
+    name: "message",
+    type: "textarea",
+    label: "Sua Mensagem",
+    placeholder: "Conte-me sobre seu projeto, ideia ou como posso ajudá-lo...",
+    required: true,
+    rows: 5,
+  },
+];
+
+const ContactCard = ({ icon: Icon, title, value, href, external }) => (
+  <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
+    <div className="p-3 rounded-full bg-primary/10">
+      <Icon className="h-6 w-6 text-primary" />
+    </div>
+    <div className="text-left">
+      <h4 className="font-medium">{title}</h4>
+      {href ? (
+        <a
+          href={href}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+          className="text-muted-foreground hover:text-primary transition-colors"
+        >
+          {value}
+        </a>
+      ) : (
+        <span className="text-muted-foreground">{value}</span>
+      )}
+    </div>
+  </div>
+);
+
+const SocialLinks = () => (
+  <div className="pt-8">
+    <h4 className="font-medium mb-4 text-center">Conecte-se comigo</h4>
+    <div className="flex space-x-4 justify-center">
+      {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          className="p-2 text-foreground hover:text-primary hover:scale-110 transition-all"
+        >
+          <Icon className="h-6 w-6" />
+        </a>
+      ))}
+    </div>
+  </div>
+);
+
+const FormField = ({ field, inputClassName }) => {
+  const { id, name, type, label, placeholder, required, rows } = field;
+
+  return (
+    <div className="space-y-2">
+      <label
+        htmlFor={id}
+        className="block text-sm font-medium text-foreground/80"
+      >
+        {label} {required && "*"}
+      </label>
+      <div className="relative">
+        {type === "textarea" ? (
+          <textarea
+            id={id}
+            name={name}
+            rows={rows}
+            required={required}
+            className={inputClassName}
+            placeholder={placeholder}
+          />
+        ) : (
+          <input
+            type={type}
+            id={id}
+            name={name}
+            required={required}
+            className={inputClassName}
+            placeholder={placeholder}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const showSuccessToast = () => {
+    toast({
+      title: "Mensagem enviada!",
+      description: "Obrigado por entrar em contato. Responderei em breve!",
+      duration: 5000,
+    });
+  };
+
+  const showErrorToast = () => {
+    toast({
+      title: "Erro ao enviar",
+      description:
+        "Algo deu errado. Tente novamente ou me envie um email direto.",
+      duration: 5000,
+      variant: "destructive",
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,26 +195,19 @@ export const ContactSection = () => {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
-      toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado por entrar em contato. Responderei em breve!",
-        duration: 5000,
-      });
-
+      showSuccessToast();
       e.target.reset();
     } catch (error) {
-      toast({
-        title: "Erro ao enviar",
-        description:
-          "Algo deu errado. Tente novamente ou me envie um email direto.",
-        duration: 5000,
-        variant: "destructive",
-      });
+      showErrorToast();
       console.error("Erro ao enviar email:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  const inputClassName =
+    "w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 resize-none placeholder:text-muted-foreground/60";
+
   return (
     <section
       id="contact"
@@ -62,72 +217,22 @@ export const ContactSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           Entre em <span className="text-primary">contato</span>
         </h2>
-
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
           Tem um projeto em mente ou quer colaborar? Sinta-se à vontade para
           entrar em contato. Estou sempre aberto a discutir novas oportunidades.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8 ">
+          <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">
               Informações de Contato
             </h3>
             <div className="space-y-6">
-              <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium">Email</h4>
-                  <a
-                    target="_blank"
-                    href="mailto:fabriciof.dev@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    fabriciof.dev@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Github className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium">GitHub</h4>
-                  <a
-                    target="_blank"
-                    href="https://github.com/Fabricio-Fontenele"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    Fabricio-Fontenele
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <LocateFixed className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium">Localização</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Parnaíba, PI - Brasil
-                  </a>
-                </div>
-              </div>
+              {CONTACT_INFO.map((contact) => (
+                <ContactCard key={contact.title} {...contact} />
+              ))}
             </div>
-
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Conecte-se comigo</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="https://www.linkedin.com/in/fabricio-fontenele-302975333/">
-                  <Linkedin />
-                </a>
-                <a href="https://www.instagram.com/_fabriciovieira_a/">
-                  <Instagram />
-                </a>
-              </div>
-            </div>
+            <SocialLinks />
           </div>
 
           <div className="bg-card backdrop-blur-sm border-2 border-border p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
@@ -139,62 +244,13 @@ export const ContactSection = () => {
             </div>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="space-y-2">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-foreground/80"
-                >
-                  Seu Nome *
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 placeholder:text-muted-foreground/60"
-                    placeholder="Digite seu nome completo..."
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-foreground/80"
-                >
-                  Seu Email *
-                </label>
-                <div className="relative">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 placeholder:text-muted-foreground/60"
-                    placeholder="seu.email@exemplo.com"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-foreground/80"
-                >
-                  Sua Mensagem *
-                </label>
-                <div className="relative">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 resize-none placeholder:text-muted-foreground/60"
-                    placeholder="Conte-me sobre seu projeto, ideia ou como posso ajudá-lo..."
-                  />
-                </div>
-              </div>
+              {FORM_FIELDS.map((field) => (
+                <FormField
+                  key={field.id}
+                  field={field}
+                  inputClassName={inputClassName}
+                />
+              ))}
 
               <button
                 type="submit"
@@ -208,7 +264,7 @@ export const ContactSection = () => {
               >
                 {isSubmitting ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/20 border-t-white"></div>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/20 border-t-white" />
                     Enviando...
                   </>
                 ) : (
