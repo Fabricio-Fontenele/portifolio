@@ -1,166 +1,120 @@
-# 💼 Portfólio Pessoal
+<div align="center">
 
-Um portfólio moderno e responsivo desenvolvido com React e Vite, apresentando uma interface elegante com modo escuro/claro e animações suaves.
+# 🚀 Portfólio Profissional
 
-## ✨ Features
+[![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-4.1.14-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-- 🎨 **Design Moderno**: Interface limpa e profissional
-- 🌙 **Modo Escuro/Claro**: Toggle entre temas com persistência no localStorage
-- 📱 **Totalmente Responsivo**: Adaptado para desktop, tablet e mobile
-- ⭐ **Animações**: Fundo de estrelas animado e efeitos visuais
-- 🚀 **Performance**: Otimizado com Vite para carregamento rápido
-- 🎯 **Navegação Suave**: Scroll suave entre seções
-- 📧 **Seção de Contato**: Formulário funcional para contato
+**Portfólio moderno e responsivo | React + Vite + Tailwind CSS**
 
-## 🛠️ Tecnologias Utilizadas
+[🌐 Ver Demo](https://fabriciofontenele.com.br) • [📧 Contato](#contato)
 
-### Frontend
-
-- **React 19.1.1** - Biblioteca JavaScript para interfaces
-- **Vite** - Build tool moderna e rápida
-- **React Router DOM** - Navegação entre páginas
-- **Tailwind CSS 4.1.14** - Framework CSS utilitário
-
-### UI/UX
-
-- **Lucide React** - Ícones modernos e consistentes
-- **Radix UI** - Componentes acessíveis
-- **Class Variance Authority** - Gerenciamento de variantes CSS
-
-### Ferramentas de Desenvolvimento
-
-- **ESLint** - Linting de código
-- **PostCSS** - Processamento de CSS
-
-## 📁 Estrutura do Projeto
-
-```
-src/
-├── components/           # Componentes reutilizáveis
-│   ├── AboutSection.jsx     # Seção sobre mim
-│   ├── ContactSection.jsx   # Seção de contato
-│   ├── Footer.jsx          # Rodapé
-│   ├── HeroSection.jsx     # Seção principal
-│   ├── NavBar.jsx          # Barra de navegação
-│   ├── ProjectsSection.jsx # Seção de projetos
-│   ├── SkillsSection.jsx   # Seção de habilidades
-│   ├── StarBackground.jsx  # Fundo animado de estrelas
-│   ├── ThemeToggle.jsx     # Toggle de tema
-│   └── ui/                 # Componentes de UI base
-├── pages/               # Páginas da aplicação
-│   ├── Home.jsx            # Página principal
-│   └── NotFound.jsx        # Página 404
-├── assets/              # Recursos estáticos
-├── App.jsx              # Componente principal
-├── main.jsx             # Ponto de entrada
-└── index.css            # Estilos globais
-```
-
-## 🚀 Como Executar
-
-### Pré-requisitos
-
-- Node.js (versão 16 ou superior)
-- npm ou yarn
-
-### Instalação
-
-1. **Clone o repositório**
-
-   ```bash
-   git clone https://github.com/Fabricio-Fontenele/portifolio.git
-   cd portifolio
-   ```
-
-2. **Instale as dependências**
-
-   ```bash
-   npm install
-   ```
-
-3. **Execute o projeto em modo de desenvolvimento**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Acesse no navegador**
-   ```
-   http://localhost:5173
-   ```
-
-## 📦 Scripts Disponíveis
-
-- `npm run dev` - Executa em modo de desenvolvimento
-- `npm run build` - Gera build de produção
-- `npm run preview` - Visualiza build de produção
-- `npm run lint` - Executa linting do código
-
-## 🎨 Seções do Portfólio
-
-- **Hero Section** - Apresentação inicial com animações
-- **About** - Informações pessoais e profissionais
-- **Skills** - Tecnologias e habilidades técnicas
-- **Projects** - Portfólio de projetos desenvolvidos
-- **Contact** - Formulário e informações de contato
-
-## 🌟 Funcionalidades Especiais
-
-### Theme Toggle
-
-- Alternância entre modo claro e escuro
-- Persistência da preferência no localStorage
-- Detecção automática da preferência do sistema
-
-### Animações
-
-- Fundo de estrelas com movimento suave
-- Transições CSS para mudanças de tema
-- Efeitos hover em elementos interativos
-
-### Responsividade
-
-- Design mobile-first
-- Breakpoints otimizados para diferentes telas
-- Navegação adaptativa
-
-## 🚀 Deploy
-
-Para fazer deploy da aplicação:
-
-1. **Gere o build de produção**
-
-   ```bash
-   npm run build
-   ```
-
-2. **A pasta `dist` conterá os arquivos prontos para deploy**
-
-### Plataformas Recomendadas
-
-- [Vercel](https://vercel.com/)
-- [Netlify](https://netlify.com/)
-- [GitHub Pages](https://pages.github.com/)
-
-## 🤝 Contribuições
-
-Contribuições são sempre bem-vindas! Sinta-se à vontade para:
-
-1. Fazer fork do projeto
-2. Criar uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
-5. Abrir um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 📞 Contato
-
-- **GitHub**: [@Fabricio-Fontenele](https://github.com/Fabricio-Fontenele)
-- **Email**: fabriciof.dev@gmail.com
+</div>
 
 ---
 
-⭐ Se este projeto te ajudou, considere dar uma estrela no repositório!
+## 📋 Sobre
+
+Portfólio profissional showcasing projetos e habilidades em desenvolvimento web. Interface elegante com modo escuro/claro, animações fluidas e formulário de contato funcional.
+
+## ✨ Features
+
+- 🎨 **Design Moderno** - Interface minimalista e profissional
+- 🌙 **Tema Escuro/Claro** - Toggle com persistência no localStorage
+- 📱 **Totalmente Responsivo** - Mobile-first design
+- ⭐ **Animações** - Fundo de estrelas animado com canvas
+- �� **Formulário de Contato** - Integração com EmailJS
+- 🚀 **Performance** - Build otimizado com Vite
+- ♿ **Acessível** - Seguindo padrões WCAG
+
+## 🛠️ Stack
+
+**Core:** React 19.1.1 • Vite 7.1.7 • Tailwind CSS 4.1.14 • React Router 7.9.3
+
+**UI:** Radix UI • Lucide Icons • CVA • EmailJS
+
+## 📁 Estrutura
+
+```
+src/
+├── components/       # Componentes reutilizáveis
+│   ├── AboutSection.jsx
+│   ├── ContactSection.jsx
+│   ├── HeroSection.jsx
+│   ├── NavBar.jsx
+│   ├── ProjectsSection.jsx
+│   ├── SkillsSection.jsx
+│   └── ui/          # Componentes base
+├── hooks/           # Custom hooks
+├── pages/           # Páginas
+└── App.jsx
+```
+
+## 🚀 Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/Fabricio-Fontenele/portifolio.git
+cd portifolio
+
+# Instale e execute
+npm install
+npm run dev
+```
+
+Acesse `http://localhost:5173`
+
+## 📦 Scripts
+
+```bash
+npm run dev      # Desenvolvimento
+npm run build    # Build de produção
+npm run preview  # Preview do build
+npm run lint     # Linting
+```
+
+## 🔧 Variáveis de Ambiente
+
+Para o formulário de contato (EmailJS):
+
+```env
+VITE_EMAILJS_SERVICE_ID=seu_service_id
+VITE_EMAILJS_TEMPLATE_ID=seu_template_id
+VITE_EMAILJS_PUBLIC_KEY=sua_public_key
+```
+
+## 🎨 Seções
+
+- 🏠 **Hero** - Apresentação com animações
+- 👤 **About** - Biografia e objetivos
+- 💻 **Skills** - Tecnologias e habilidades
+- �� **Projects** - Portfólio de projetos
+- 💼 **Experience** - Timeline profissional
+- 📧 **Contact** - Formulário + redes sociais
+
+## 🚀 Deploy
+
+```bash
+npm run build
+```
+
+Deploy em: **Vercel** • **Netlify** • **GitHub Pages**
+
+## 📝 Licença
+
+MIT © [Fabrício Fontenele](https://github.com/Fabricio-Fontenele)
+
+## 📧 Contato
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fabricio-fontenele-302975333/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Fabricio-Fontenele)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:fabriciof.dev@gmail.com)
+
+---
+
+<div align="center">
+
+⭐ **Se gostou do projeto, deixe uma estrela!**
+
+</div>
