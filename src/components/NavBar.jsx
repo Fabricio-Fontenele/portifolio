@@ -167,12 +167,21 @@ export const Navbar = () => {
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <div className="flex flex-col h-full pt-20 pb-8 px-6">
-          <div className="mb-6 px-4">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-              Navegação
-            </h3>
-            <div className="h-0.5 w-12 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+        <div className="flex flex-col h-full pt-6 pb-8 px-6">
+          <div className="flex items-center justify-between mb-8 px-4">
+            <div>
+              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+                Navegação
+              </h3>
+              <div className="h-0.5 w-12 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+            </div>
+            <button
+              onClick={toggleMenu}
+              className="p-2 rounded-lg bg-muted dark:bg-secondary/30 border-2 border-border hover:bg-secondary hover:border-primary/50 transition-all duration-300"
+              aria-label="Fechar Menu"
+            >
+              <X className="h-5 w-5 text-foreground" />
+            </button>
           </div>
 
           <div className="flex-1 space-y-1">
