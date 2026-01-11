@@ -30,7 +30,8 @@ export const AboutSection = () => {
                 Entre em contato
               </a>
               <a
-                href="#"
+                href="/curriculo.pdf"
+                download="Fabricio_Fontenele_Curriculo.pdf"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 text-center"
               >
                 Meu currículo
