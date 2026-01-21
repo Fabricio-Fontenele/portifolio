@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  portifolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portifolio-app
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - portifolio-network
+
+networks:
+  portifolio-network:
+    driver: bridge
