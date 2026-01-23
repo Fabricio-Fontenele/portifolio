@@ -1,17 +1,20 @@
-version: "3.8"
+name: fabricio
 
 services:
   portifolio:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: portifolio-app
-    ports:
-      - "80:80"
+    container_name: fabricio_portfolio
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.50"
     networks:
-      - portifolio-network
+      - backbone_net
 
 networks:
-  portifolio-network:
-    driver: bridge
+  backbone_net:
+    external: true
