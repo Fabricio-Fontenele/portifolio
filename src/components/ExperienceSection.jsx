@@ -71,45 +71,46 @@ export const ExperienceSection = () => {
                     index % 2 === 0 ? "md:pr-16" : "md:pl-16"
                   } pl-20 md:pl-0`}
                 >
-                  <div className="bg-card rounded-xl p-6 shadow-xl border-2 border-border hover:border-primary/50 transition-all duration-300 group hover:scale-105">
-                    {/* Gradient Accent */}
-                    <div
-                      className={`h-1 w-20 rounded-full bg-gradient-to-r ${exp.color} mb-4`}
-                    />
-
-                    <div className="mb-4">
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                        {exp.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-2">
-                        <span className="flex items-center gap-1">
-                          <Briefcase className="w-4 h-4" />
-                          {exp.company}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          {exp.location}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {exp.period}
-                        </span>
+                  <div className="bg-card/50 backdrop-blur-sm rounded-lg shadow-xl border border-border hover:border-primary/50 transition-all duration-300 group hover:scale-105 overflow-hidden">
+                    {/* Terminal Header - Simples */}
+                    <div className="bg-card/80 backdrop-blur px-4 py-2.5 border-b border-border">
+                      <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                        <span className="text-primary">❯</span>
+                        <span>{exp.company}</span>
+                        <span className="text-primary/50">·</span>
+                        <span>{exp.period}</span>
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground mb-4">
-                      {exp.description}
-                    </p>
+                    {/* Content */}
+                    <div className="p-6">
+                      {/* Title */}
+                      <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                        {exp.title}
+                      </h3>
 
-                    <div className="flex flex-wrap gap-2">
-                      {exp.tags.map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="px-3 py-1 text-xs rounded-full bg-secondary/70 text-foreground border border-border"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      {/* Location */}
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
+                        <MapPin className="w-4 h-4" />
+                        <span>{exp.location}</span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                        {exp.description}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2">
+                        {exp.tags.map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="px-2.5 py-1 text-xs rounded bg-card/60 text-primary border border-border hover:border-primary/50 transition-all font-mono"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
