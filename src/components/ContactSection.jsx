@@ -53,15 +53,15 @@ const FORM_FIELDS = [
     id: "name",
     name: "name",
     type: "text",
-    label: "Seu Nome",
-    placeholder: "Digite seu nome completo...",
+    label: "Nome",
+    placeholder: "Digite seu nome completo",
     required: true,
   },
   {
     id: "email",
     name: "email",
     type: "email",
-    label: "Seu Email",
+    label: "Email",
     placeholder: "seu.email@exemplo.com",
     required: true,
   },
@@ -69,31 +69,37 @@ const FORM_FIELDS = [
     id: "message",
     name: "message",
     type: "textarea",
-    label: "Sua Mensagem",
-    placeholder: "Conte-me sobre seu projeto, ideia ou como posso ajudá-lo...",
+    label: "Mensagem",
+    placeholder: "Conte-me sobre seu projeto ou ideia...",
     required: true,
     rows: 5,
   },
 ];
 
 const ContactCard = ({ icon: Icon, title, value, href, external }) => (
-  <div className="flex items-center space-x-4 p-4 rounded-lg bg-card border-2 border-border hover:border-primary/50 transition-all shadow-md">
-    <div className="p-3 rounded-full bg-primary/10">
+  <div className="group relative flex items-center space-x-4 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/10 overflow-hidden">
+    {/* Terminal-style top bar */}
+    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+    
+    <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors group-hover:scale-110 duration-300">
       <Icon className="h-6 w-6 text-primary" />
     </div>
-    <div className="text-left">
-      <h4 className="font-medium">{title}</h4>
+    <div className="text-left flex-1">
+      <h4 className="font-medium font-mono text-sm text-muted-foreground mb-1">
+        <span className="text-primary"># </span>
+        {title}
+      </h4>
       {href ? (
         <a
           href={href}
           target={external ? "_blank" : undefined}
           rel={external ? "noopener noreferrer" : undefined}
-          className="text-muted-foreground hover:text-primary transition-colors"
+          className="text-foreground hover:text-primary transition-colors font-medium"
         >
           {value}
         </a>
       ) : (
-        <span className="text-muted-foreground">{value}</span>
+        <span className="text-foreground font-medium">{value}</span>
       )}
     </div>
   </div>
@@ -101,7 +107,7 @@ const ContactCard = ({ icon: Icon, title, value, href, external }) => (
 
 const SocialLinks = () => (
   <div className="pt-8">
-    <h4 className="font-medium mb-4 text-center">Conecte-se comigo</h4>
+    <h4 className="text-center mb-4 font-medium">Conecte-se comigo</h4>
     <div className="flex space-x-4 justify-center">
       {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
         <a
@@ -110,9 +116,12 @@ const SocialLinks = () => (
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="p-2 text-foreground hover:text-primary hover:scale-110 transition-all"
+          className="group relative p-4 bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/50 text-foreground hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
         >
           <Icon className="h-6 w-6" />
+          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-mono bg-card border border-border px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            {label}
+          </span>
         </a>
       ))}
     </div>
@@ -126,11 +135,14 @@ const FormField = ({ field, inputClassName }) => {
     <div className="space-y-2">
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-foreground/80"
+        className="block text-sm font-medium text-foreground mb-1"
       >
-        {label} {required && "*"}
+        {label} {required && <span className="text-primary">*</span>}
       </label>
       <div className="relative">
+        <div className="absolute left-3 top-3 pointer-events-none">
+          <span className="text-primary font-mono text-sm">❯</span>
+        </div>
         {type === "textarea" ? (
           <textarea
             id={id}
@@ -206,7 +218,7 @@ export const ContactSection = () => {
   };
 
   const inputClassName =
-    "w-full px-4 py-3 rounded-lg border border-input bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 resize-none placeholder:text-muted-foreground/60";
+    "w-full pl-8 pr-4 py-3 rounded-lg border border-border bg-card/30 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 resize-none placeholder:text-muted-foreground/60 hover:border-primary/30 font-mono text-sm";
 
   return (
     <section
@@ -224,7 +236,7 @@ export const ContactSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">
+            <h3 className="text-2xl font-semibold">
               Informações de Contato
             </h3>
             <div className="space-y-6">
@@ -235,46 +247,62 @@ export const ContactSection = () => {
             <SocialLinks />
           </div>
 
-          <div className="bg-card backdrop-blur-sm border-2 border-border p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Send className="h-5 w-5 text-primary" />
+          <div className="relative bg-card/50 backdrop-blur-sm border border-border rounded-lg shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 overflow-hidden">
+            {/* Terminal header */}
+            <div className="bg-card backdrop-blur px-4 py-3 border-b border-border flex items-center justify-between">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                <div className="w-3 h-3 rounded-full bg-green-500/60" />
               </div>
-              <h3 className="text-2xl font-semibold">Envie uma Mensagem</h3>
+              <span className="absolute left-1/2 -translate-x-1/2 text-xs font-mono text-muted-foreground">
+                contact.sh
+              </span>
+              <div className="w-12"></div>
             </div>
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              {FORM_FIELDS.map((field) => (
-                <FormField
-                  key={field.id}
-                  field={field}
-                  inputClassName={inputClassName}
-                />
-              ))}
+            {/* Form content */}
+            <div className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Send className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Envie uma Mensagem</h3>
+              </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed",
-                  isSubmitting
-                    ? "bg-primary/80"
-                    : "bg-primary hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]"
-                )}
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/20 border-t-white" />
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    Enviar Mensagem
-                    <Send size={16} />
-                  </>
-                )}
-              </button>
-            </form>
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {FORM_FIELDS.map((field) => (
+                  <FormField
+                    key={field.id}
+                    field={field}
+                    inputClassName={inputClassName}
+                  />
+                ))}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={cn(
+                    "w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed",
+                    isSubmitting
+                      ? "bg-primary/80"
+                      : "bg-primary hover:bg-primary/90 text-primary-foreground hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30 active:scale-[0.98]"
+                  )}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/20 border-t-white" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      Enviar Mensagem
+                      <Send size={16} />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
