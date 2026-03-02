@@ -83,11 +83,6 @@ export const ProjectsSection = () => {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/60 group-hover:bg-yellow-500 transition-colors" />
                   <div className="w-3 h-3 rounded-full bg-green-500/60 group-hover:bg-green-500 transition-colors" />
                 </div>
-                <div className="flex-1 text-center">
-                  <span className="text-xs text-muted-foreground font-mono">
-                    {project.title.toLowerCase().replace(/\s+/g, '-')}.sh
-                  </span>
-                </div>
               </div>
 
               {/* Terminal Content */}
