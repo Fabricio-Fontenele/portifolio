@@ -62,7 +62,7 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="text-lg font-semibold">Backend Robusto</h4>
                   <p className="text-sm text-muted-foreground">
-                    APIs escaláveis com Node.js, Express e PostgreSQL.
+                    APIs escaláveis com Node.js, Fastify e PostgreSQL.
                   </p>
                 </div>
               </div>

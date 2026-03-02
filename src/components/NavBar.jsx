@@ -25,11 +25,16 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [scrollProgress, setScrollProgress] = useState(0);
   const { isDarkTheme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      setScrollProgress(scrollPercent);
+      setIsScrolled(scrollTop > 10);
 
       const sections = navItems.map((item) => item.href.substring(1));
       const currentSection = sections.find((section) => {
@@ -81,6 +86,11 @@ export const Navbar = () => {
             : "py-4 bg-transparent"
         )}
       >
+        {/* Scroll progress bar */}
+        <div 
+          className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-primary/50 via-primary to-primary/50 transition-all duration-150"
+          style={{ width: `${scrollProgress}%` }}
+        />
         <div className="container mx-auto px-4 flex items-center justify-between">
           <a
             className="text-xl font-bold flex items-center cursor-pointer hover:scale-105 transition-all duration-300 relative group"
@@ -117,7 +127,7 @@ export const Navbar = () => {
                       "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative",
                       isActive
                         ? "text-primary-foreground bg-primary shadow-md"
-                        : "text-foreground/70 hover:text-primary hover:bg-secondary/50"
+                        : "text-foreground/70 hover:text-primary hover:bg-secondary/50 hover:scale-105"
                     )}
                   >
                     {item.name}
