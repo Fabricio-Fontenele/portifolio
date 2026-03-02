@@ -1,101 +1,69 @@
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Terminal } from "lucide-react";
 
 export const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const quickLinks = [
+    { href: "#about", label: "Sobre" },
+    { href: "#projects", label: "Projetos" },
+    { href: "#experience", label: "Experiências" },
+    { href: "#skills", label: "Skills" },
+    { href: "#contact", label: "Contato" },
+  ];
+
   return (
     <footer className="relative">
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+      {/* Gradient divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
 
-      <div className="bg-card/80 backdrop-blur-sm border-t border-border/50">
-        <div className="container mx-auto max-w-5xl px-4 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
-            <div className="flex flex-col items-center md:items-start gap-2">
-              <p className="text-sm text-muted-foreground text-center md:text-left">
-                &copy; {new Date().getFullYear()} Fabricio Fontenele. Todos os
-                direitos reservados.
+      <div className="bg-card/50 backdrop-blur-md border-t border-border/50">
+        <div className="container mx-auto max-w-6xl px-4 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Left: Brand + Copyright */}
+            <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 bg-primary/10 rounded">
+                  <Terminal className="w-4 h-4 text-primary" />
+                </div>
+                <span className="font-semibold">Fabrício Fontenele</span>
+              </div>
+              <span className="hidden md:block text-muted-foreground">•</span>
+              <p className="text-sm text-muted-foreground">
+                &copy; {new Date().getFullYear()}
               </p>
-              <p className="text-xs text-muted-foreground/80">
-                Desenvolvido com React + Vite
-              </p>
             </div>
 
-            <div className="hidden md:flex items-center gap-6">
-              <a
-                href="#about"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Sobre
-              </a>
-              <a
-                href="#projects"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Projetos
-              </a>
-              <a
-                href="#experience"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Experiências
-              </a>
-              <a
-                href="#contact"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Contato
-              </a>
-            </div>
+            {/* Center: Quick Links */}
+            <nav className="flex flex-wrap justify-center gap-4">
+              {quickLinks.map((link, index) => (
+                <span key={link.href} className="flex items-center gap-4">
+                  <a
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                  {index < quickLinks.length - 1 && (
+                    <span className="text-muted-foreground/30">•</span>
+                  )}
+                </span>
+              ))}
+            </nav>
 
-            <div className="flex items-center gap-3">
-              <span className="hidden md:block text-xs text-muted-foreground/80">
-                Voltar ao topo
-              </span>
-              <button
-                onClick={scrollToTop}
-                className="group p-3 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/20 hover:border-primary/30 text-primary transition-all duration-200 hover:scale-110 active:scale-95"
-                aria-label="Voltar ao topo"
-              >
-                <ArrowUp
-                  size={18}
-                  className="group-hover:-translate-y-0.5 transition-transform duration-200"
-                />
-              </button>
-            </div>
-          </div>
-
-          <div className="md:hidden mt-6 pt-6 border-t border-border/50">
-            <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="#about"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Sobre
-              </a>
-              <span className="text-muted-foreground/50">•</span>
-              <a
-                href="#projects"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Projetos
-              </a>
-              <span className="text-muted-foreground/50">•</span>
-              <a
-                href="#experience"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Experiências
-              </a>
-              <span className="text-muted-foreground/50">•</span>
-              <a
-                href="#contact"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Contato
-              </a>
-            </div>
+            {/* Right: Back to top */}
+            <button
+              onClick={scrollToTop}
+              className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20 hover:border-primary/40 text-primary transition-all duration-300 hover:scale-105"
+              aria-label="Voltar ao topo"
+            >
+              <span className="text-sm font-medium">Topo</span>
+              <ArrowUp
+                size={16}
+                className="group-hover:-translate-y-1 transition-transform duration-300"
+              />
+            </button>
           </div>
         </div>
       </div>
