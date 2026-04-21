@@ -1,6 +1,17 @@
+import type { SVGProps } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 
-const experiences = [
+type SkillExperience = {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string;
+  tags: string[];
+  color: string;
+};
+
+const experiences: SkillExperience[] = [
   {
     title: "Desenvolvedor Full Stack",
     company: "Freelancer",
@@ -54,7 +65,7 @@ export const SkillsSection = () => {
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div
-                key={index}
+                key={exp.title}
                 className={`relative flex flex-col md:flex-row gap-8 ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
@@ -136,7 +147,11 @@ export const SkillsSection = () => {
   );
 };
 
-function ArrowRight({ className }) {
+type ArrowRightProps = {
+  className?: string;
+};
+
+function ArrowRight({ className }: ArrowRightProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +161,7 @@ function ArrowRight({ className }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
+      className={className as SVGProps<SVGSVGElement>["className"]}
     >
       <path d="M5 12h14" />
       <path d="m12 5 7 7-7 7" />

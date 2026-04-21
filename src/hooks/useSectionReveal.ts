@@ -1,5 +1,6 @@
 "use client";
 
+import type { RefObject } from "react";
 import { useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,7 +14,9 @@ const registerGsap = () => {
   }
 };
 
-export const useSectionReveal = (scopeRef) => {
+export const useSectionReveal = (
+  scopeRef: RefObject<HTMLElement | null>
+): void => {
   useLayoutEffect(() => {
     if (!scopeRef.current) {
       return undefined;

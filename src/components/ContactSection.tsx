@@ -1,13 +1,64 @@
 "use client";
 
-import { Github, Instagram, Linkedin, LocateFixed, Mail, Send } from "lucide-react";
+import type { FormEvent } from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  Github,
+  Instagram,
+  Linkedin,
+  LocateFixed,
+  Mail,
+  Send,
+} from "lucide-react";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
-const channels = [
+type Channel = {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  href?: string;
+};
+
+type Social = {
+  icon: LucideIcon;
+  href: string;
+  label: string;
+};
+
+type Field =
+  | {
+      id: string;
+      name: string;
+      type: "text" | "email";
+      label: string;
+      placeholder: string;
+      required: boolean;
+    }
+  | {
+      id: string;
+      name: string;
+      type: "textarea";
+      label: string;
+      placeholder: string;
+      required: boolean;
+      rows: number;
+    };
+
+type ContactFormElements = HTMLFormControlsCollection & {
+  name: HTMLInputElement;
+  email: HTMLInputElement;
+  message: HTMLTextAreaElement;
+};
+
+type ContactForm = HTMLFormElement & {
+  readonly elements: ContactFormElements;
+};
+
+const channels: Channel[] = [
   {
     icon: Mail,
     label: "Email",
@@ -27,7 +78,7 @@ const channels = [
   },
 ];
 
-const socials = [
+const socials: Social[] = [
   {
     icon: Linkedin,
     href: "https://www.linkedin.com/in/fabricio-fontenele-302975333/",
@@ -40,7 +91,7 @@ const socials = [
   },
 ];
 
-const fields = [
+const fields: Field[] = [
   {
     id: "name",
     name: "name",
@@ -69,29 +120,37 @@ const fields = [
 ];
 
 export const ContactSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   useSectionReveal(sectionRef);
 
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (event) => {
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+  const handleSubmit = async (event: FormEvent<ContactForm>) => {
     event.preventDefault();
     setIsSubmitting(true);
 
     const form = event.currentTarget;
     const data = {
-      from_name: form.name.value,
-      from_email: form.email.value,
-      message: form.message.value,
+      from_name: form.elements.name.value,
+      from_email: form.elements.email.value,
+      message: form.elements.message.value,
     };
 
     try {
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("EmailJS environment variables are not configured.");
+      }
+
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         data,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        publicKey
       );
 
       toast({

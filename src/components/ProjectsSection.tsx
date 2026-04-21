@@ -1,11 +1,24 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { ArrowRight, ExternalLink, GithubIcon } from "lucide-react";
 import { useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
-const projects = [
+type ProjectStatus = "Em produção" | "Em desenvolvimento";
+
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  status: ProjectStatus;
+  demoUrl: string;
+  githubUrl: string;
+};
+
+const projects: Project[] = [
   {
     id: 1,
     title: "BarberHub",
@@ -38,18 +51,22 @@ const projects = [
   },
 ];
 
-const statusStyles = {
+const statusStyles: Record<ProjectStatus, string> = {
   "Em produção": "border-emerald-400/30 bg-emerald-400/10 text-emerald-200",
   "Em desenvolvimento": "border-amber-300/30 bg-amber-300/10 text-amber-100",
 };
 
 export const ProjectsSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   useSectionReveal(sectionRef);
 
   const { toast } = useToast();
 
-  const handleDemoClick = (event, demoUrl, projectTitle) => {
+  const handleDemoClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    demoUrl: string,
+    projectTitle: string
+  ) => {
     if (demoUrl !== "#") return;
 
     event.preventDefault();

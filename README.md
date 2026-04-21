@@ -79,9 +79,9 @@ npm run lint     # Linting
 Para o formulário de contato (EmailJS):
 
 ```env
-VITE_EMAILJS_SERVICE_ID=seu_service_id
-VITE_EMAILJS_TEMPLATE_ID=seu_template_id
-VITE_EMAILJS_PUBLIC_KEY=sua_public_key
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=seu_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=seu_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=sua_public_key
 ```
 
 ## 🎨 Seções

@@ -4,7 +4,16 @@ import { MapPin } from "lucide-react";
 import { useRef } from "react";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
-const experiences = [
+type Experience = {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string;
+  tags: string[];
+};
+
+const experiences: Experience[] = [
   {
     title: "Desenvolvedor Backend / Engenheiro de Software",
     company: "Freelancer",
@@ -35,7 +44,7 @@ const experiences = [
 ];
 
 export const ExperienceSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   useSectionReveal(sectionRef);
 
   return (

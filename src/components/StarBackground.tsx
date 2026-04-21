@@ -1,8 +1,27 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 
-const createStars = () => {
+type Star = {
+  id: string;
+  size: number;
+  x: number;
+  y: number;
+  opacity: number;
+  animationDuration: number;
+};
+
+type Meteor = {
+  id: string;
+  size: number;
+  x: number;
+  y: number;
+  delay: number;
+  animationDuration: number;
+};
+
+const createStars = (): Star[] => {
   const density = Math.floor((window.innerWidth * window.innerHeight) / 9000);
 
   return Array.from({ length: density }).map((_, index) => ({
@@ -15,7 +34,7 @@ const createStars = () => {
   }));
 };
 
-const createMeteors = () => {
+const createMeteors = (): Meteor[] => {
   return Array.from({ length: 3 }).map((_, index) => ({
     id: `meteor-${index}`,
     size: Math.random() * 1.1 + 0.6,
@@ -27,8 +46,8 @@ const createMeteors = () => {
 };
 
 export const StarBackground = () => {
-  const [stars, setStars] = useState([]);
-  const [meteors, setMeteors] = useState([]);
+  const [stars, setStars] = useState<Star[]>([]);
+  const [meteors, setMeteors] = useState<Meteor[]>([]);
 
   useEffect(() => {
     const updateSky = () => {
@@ -55,7 +74,7 @@ export const StarBackground = () => {
             top: `${star.y}%`,
             opacity: star.opacity,
             animationDuration: `${star.animationDuration}s`,
-          }}
+          } as CSSProperties}
         />
       ))}
 
@@ -71,7 +90,7 @@ export const StarBackground = () => {
             animationDelay: `${meteor.delay}s`,
             animationDuration: `${meteor.animationDuration}s`,
             opacity: 0.72,
-          }}
+          } as CSSProperties}
         />
       ))}
     </div>

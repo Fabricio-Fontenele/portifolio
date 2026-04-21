@@ -1,10 +1,17 @@
 "use client";
 
+import type { LucideIcon } from "lucide-react";
 import { Blocks, Database, Server } from "lucide-react";
 import { useRef } from "react";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
-const specialties = [
+type Specialty = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
+
+const specialties: Specialty[] = [
   {
     icon: Server,
     title: "Backend orientado a domínio",
@@ -26,7 +33,7 @@ const specialties = [
 ];
 
 export const AboutSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   useSectionReveal(sectionRef);
 
   return (

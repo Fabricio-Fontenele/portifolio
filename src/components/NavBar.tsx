@@ -1,11 +1,17 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/hooks/useTheme";
 
-const navItems = [
+type NavItem = {
+  name: string;
+  href: `#${string}`;
+};
+
+const navItems: NavItem[] = [
   { name: "Início", href: "#hero" },
   { name: "Sobre", href: "#about" },
   { name: "Experiência", href: "#experience" },
@@ -56,9 +62,9 @@ export const Navbar = () => {
     };
   }, [isMenuOpen]);
 
-  const handleNavClick = (href) => {
+  const handleNavClick = (href: NavItem["href"]) => {
     setIsMenuOpen(false);
-    const element = document.querySelector(href);
+    const element = document.querySelector<HTMLElement>(href);
 
     if (!element) return;
     element.scrollIntoView({ behavior: "smooth" });
@@ -84,9 +90,9 @@ export const Navbar = () => {
               <a
                 href="#hero"
                 onClick={(event) => {
-                  event.preventDefault();
-                  handleNavClick("#hero");
-                }}
+                    event.preventDefault();
+                    handleNavClick("#hero");
+                  }}
                 className="inline-flex min-w-0 items-center gap-2 text-sm font-semibold tracking-wide md:text-base"
               >
                 <span className="h-2 w-2 shrink-0 rounded-full bg-primary shadow-[0_0_16px_rgba(56,189,248,0.9)]" />
@@ -169,10 +175,10 @@ export const Navbar = () => {
               <a
                 key={item.href}
                 href={item.href}
-                onClick={(event) => {
-                  event.preventDefault();
-                  handleNavClick(item.href);
-                }}
+                  onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+                    event.preventDefault();
+                    handleNavClick(item.href);
+                  }}
                 className={cn(
                   "block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive

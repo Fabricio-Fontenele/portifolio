@@ -21,7 +21,7 @@ const techStack = [
 ];
 
 export const HeroSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
     if (!sectionRef.current) {
