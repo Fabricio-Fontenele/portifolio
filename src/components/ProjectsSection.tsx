@@ -21,13 +21,19 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: "BarberHub",
+    title: "GymPass Style API",
     description:
-      "Plataforma de agendamento com foco em modelagem de regras de negócio, persistência relacional e organização do backend para a evolução do produto.",
-    tags: ["TypeScript", "Prisma", "PostgreSQL", "Clean Architecture"],
+      "API de exemplo inspirada no GymPass, focada em clean architecture, principios do SOLID.",
+    tags: [
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Vitest",
+      "Clean Architecture",
+    ],
     status: "Em desenvolvimento",
     demoUrl: "#",
-    githubUrl: "https://github.com/Fabricio-Fontenele/BarberHub.git",
+    githubUrl: "https://github.com/Fabricio-Fontenele/API-SOLID.git",
   },
   {
     id: 2,
@@ -65,7 +71,7 @@ export const ProjectsSection = () => {
   const handleDemoClick = (
     event: MouseEvent<HTMLAnchorElement>,
     demoUrl: string,
-    projectTitle: string
+    projectTitle: string,
   ) => {
     if (demoUrl !== "#") return;
 
@@ -123,7 +129,9 @@ export const ProjectsSection = () => {
                 </p>
 
                 <p className="mt-5 break-words text-xs text-muted-foreground">
-                  <span className="font-semibold text-foreground/90">Stack:</span>{" "}
+                  <span className="font-semibold text-foreground/90">
+                    Stack:
+                  </span>{" "}
                   {project.tags.join(" · ")}
                 </p>
 
