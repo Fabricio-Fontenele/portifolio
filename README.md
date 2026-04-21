@@ -1,82 +1,94 @@
 <div align="center">
 
-# 🚀 Portfólio Profissional
+# Portfólio Profissional
 
+[![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-4.1.14-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1.14-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-**Portfólio moderno e responsivo | React + Vite + Tailwind CSS**
+**Portfólio pessoal com foco em backend, engenharia de software e arquitetura**
 
-[🌐 Ver Demo](https://fabriciofontenele.com.br) • [📧 Contato](#contato)
+[Demo](https://fabriciofontenele.com.br) • [Contato](#contato)
 
 </div>
 
----
+## Sobre
 
-## 📋 Sobre
+Este projeto é o portfólio pessoal de Fabrício Fontenele. A aplicação foi construída com Next.js App Router e TypeScript, com uma interface editorial/cósmica para apresentar experiência, projetos e posicionamento técnico com foco em backend e engenharia de software.
 
-Portfólio profissional showcasing projetos e habilidades em desenvolvimento web. Interface elegante com modo escuro/claro, animações fluidas e formulário de contato funcional.
+## Destaques
 
-## ✨ Features
+- App Router com Next.js 15
+- TypeScript em toda a base de código
+- Tailwind CSS 4 com tokens e utilitários customizados
+- animações com GSAP e efeitos de fundo com estrelas/meteoros
+- formulário de contato com EmailJS
+- layout responsivo com ajustes para mobile e desktop
 
-- 🎨 **Design Moderno** - Interface minimalista e profissional
-- 🌙 **Tema Escuro/Claro** - Toggle com persistência no localStorage
-- 📱 **Totalmente Responsivo** - Mobile-first design
-- ⭐ **Animações** - Fundo de estrelas animado com canvas
-- �� **Formulário de Contato** - Integração com EmailJS
-- 🚀 **Performance** - Build otimizado com Vite
-- ♿ **Acessível** - Seguindo padrões WCAG
+## Stack
 
-## 🛠️ Stack
+**Base**
 
-**Core:** React 19.1.1 • Vite 7.1.7 • Tailwind CSS 4.1.14 • React Router 7.9.3
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS 4
 
-**UI:** Radix UI • Lucide Icons • CVA • EmailJS
+**UI e utilitários**
 
-## 📁 Estrutura
+- Radix UI Toast
+- Lucide React
+- CVA
+- clsx
+- tailwind-merge
 
-```
+**Animação e integração**
+
+- GSAP
+- EmailJS
+
+## Estrutura
+
+```text
 src/
-├── components/       # Componentes reutilizáveis
-│   ├── AboutSection.jsx
-│   ├── ContactSection.jsx
-│   ├── HeroSection.jsx
-│   ├── NavBar.jsx
-│   ├── ProjectsSection.jsx
-│   ├── SkillsSection.jsx
-│   └── ui/          # Componentes base
-├── hooks/           # Custom hooks
-├── pages/           # Páginas
-└── App.jsx
+├── app/                 # App Router
+├── components/          # Seções e componentes de interface
+│   └── ui/              # Primitivos reutilizáveis
+├── hooks/               # Hooks de tema, animação e toast
+├── lib/                 # Utilitários compartilhados
+├── types/               # Declarações auxiliares
+└── index.css            # Tokens e estilos globais
+
+public/
+├── curriculo.pdf
+├── favicon.svg
+└── images/
 ```
 
-## 🚀 Instalação
+## Instalação
 
 ```bash
-# Clone o repositório
 git clone https://github.com/Fabricio-Fontenele/portifolio.git
 cd portifolio
-
-# Instale e execute
 npm install
 npm run dev
 ```
 
-Acesse `http://localhost:5173`
+Acesse `http://localhost:3000`.
 
-## 📦 Scripts
+## Scripts
 
 ```bash
-npm run dev      # Desenvolvimento
-npm run build    # Build de produção
-npm run preview  # Preview do build
-npm run lint     # Linting
+npm run dev      # ambiente de desenvolvimento
+npm run build    # build de produção
+npm run start    # sobe a aplicação em produção
+npm run lint     # lint da base
 ```
 
-## 🔧 Variáveis de Ambiente
+## Variáveis de ambiente
 
-Para o formulário de contato (EmailJS):
+Para o formulário de contato com EmailJS:
 
 ```env
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=seu_service_id
@@ -84,37 +96,22 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=seu_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=sua_public_key
 ```
 
-## 🎨 Seções
+## Deploy
 
-- 🏠 **Hero** - Apresentação com animações
-- 👤 **About** - Biografia e objetivos
-- 💻 **Skills** - Tecnologias e habilidades
-- �� **Projects** - Portfólio de projetos
-- 💼 **Experience** - Timeline profissional
-- 📧 **Contact** - Formulário + redes sociais
-
-## 🚀 Deploy
+Build de produção:
 
 ```bash
 npm run build
 ```
 
-Deploy em: **Vercel** • **Netlify** • **GitHub Pages**
+Como o projeto está configurado com `output: "standalone"`, ele pode ser publicado com facilidade em VPS e ambientes Node.js.
 
-## 📝 Licença
+## Contato
+
+- LinkedIn: [linkedin.com/in/fabricio-fontenele-302975333](https://www.linkedin.com/in/fabricio-fontenele-302975333/)
+- GitHub: [github.com/Fabricio-Fontenele](https://github.com/Fabricio-Fontenele)
+- Email: [fabriciof.dev@gmail.com](mailto:fabriciof.dev@gmail.com)
+
+## Licença
 
 MIT © [Fabrício Fontenele](https://github.com/Fabricio-Fontenele)
-
-## 📧 Contato
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fabricio-fontenele-302975333/)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Fabricio-Fontenele)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:fabriciof.dev@gmail.com)
-
----
-
-<div align="center">
-
-⭐ **Se gostou do projeto, deixe uma estrela!**
-
-</div>
