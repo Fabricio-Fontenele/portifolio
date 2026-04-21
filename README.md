@@ -118,6 +118,4 @@ Para uma referência mais próxima da VPS atual com domínio e Certbot, veja tam
 - GitHub: [github.com/Fabricio-Fontenele](https://github.com/Fabricio-Fontenele)
 - Email: [fabriciof.dev@gmail.com](mailto:fabriciof.dev@gmail.com)
 
-## Licença
 
-MIT © [Fabrício Fontenele](https://github.com/Fabricio-Fontenele)
