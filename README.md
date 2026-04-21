@@ -106,6 +106,12 @@ npm run build
 
 Como o projeto está configurado com `output: "standalone"`, ele pode ser publicado com facilidade em VPS e ambientes Node.js.
 
+Na VPS atual, a aplicação roda via Docker Compose publicada em `127.0.0.1:3000`, e o Nginx ativo fica no host em `/etc/nginx/sites-available/portfolio`.
+
+O arquivo [infra/nginx/portfolio.conf.example](infra/nginx/portfolio.conf.example) é apenas um template versionado para futuras migrações de VPS e não é aplicado automaticamente pelo deploy atual.
+
+Para uma referência mais próxima da VPS atual com domínio e Certbot, veja também [infra/nginx/portfolio.vps-ssl.conf.example](infra/nginx/portfolio.vps-ssl.conf.example).
+
 ## Contato
 
 - LinkedIn: [linkedin.com/in/fabricio-fontenele-302975333](https://www.linkedin.com/in/fabricio-fontenele-302975333/)
