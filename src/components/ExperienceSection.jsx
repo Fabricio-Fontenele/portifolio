@@ -1,159 +1,113 @@
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+"use client";
+
+import { MapPin } from "lucide-react";
+import { useRef } from "react";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const experiences = [
   {
-    title: "Desenvolvedor Full Stack",
+    title: "Desenvolvedor Backend / Engenheiro de Software",
     company: "Freelancer",
     location: "Remoto",
-    period: "2024 - Presente",
+    period: "2024 - Atual",
     description:
-      "Desenvolvimento de aplicações web completas usando React, Node.js e PostgreSQL. Foco em criar soluções escaláveis e modernas.",
-    tags: ["React", "Node.js", "PostgreSQL", "TypeScript"],
-    color: "from-blue-500 to-cyan-500",
+      "Implementação de APIs, modelagem de domínio e organização de serviços com foco em escalabilidade, clareza estrutural e manutenção.",
+    tags: ["TypeScript", "Node.js", "PostgreSQL", "Supabase"],
   },
   {
-    title: "PET-Saúde Digital",
+    title: "Projetos com foco em arquitetura",
     company: "UESPI",
     location: "Parnaíba, PI",
-    period: "2025 - Presente",
+    period: "2025 - Atual",
     description:
-      "Desenvolvimento de dashboards para auxiliar as Unidades Básicas de Saúde (UBS) na análise e visualização de dados. Atuando pela área de ciência de dados, análise estatística e geração de insights.",
-    tags: ["Python", "Django", "PostgreSQL", "Data Science"],
-    color: "from-green-500 to-emerald-600",
+      "Estudo e aplicação prática de separação em camadas, responsabilidades de domínio, integração com banco relacional e padrões de projeto.",
+    tags: ["Clean Architecture", "DDD", "Prisma", "Vitest"],
   },
   {
-    title: "Estudante de Sistemas de Computação",
+    title: "Sistemas de Computação",
     company: "UESPI",
     location: "Parnaíba, PI",
-    period: "2024 - Presente",
+    period: "2024 - Atual",
     description:
-      "Aprofundando conhecimentos em algoritmos, estruturas de dados, arquitetura de software e ciência de dados.",
-    tags: ["Python", "Algoritmos", "Data Science"],
-    color: "from-purple-500 to-pink-500",
+      "Formação orientada a algoritmos, arquitetura de software, modelagem de dados, persistência e fundamentos de engenharia de sistemas.",
+    tags: ["Arquitetura", "Modelagem", "SQL", "Engenharia de Software"],
   },
 ];
 
 export const ExperienceSection = () => {
+  const sectionRef = useRef(null);
+  useSectionReveal(sectionRef);
+
   return (
-    <section
-      id="experience"
-      className="py-24 px-4 relative bg-secondary/50 dark:bg-secondary/30"
-    >
-      <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Experiências & <span className="text-primary">Jornada</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Minha trajetória no mundo da tecnologia e desenvolvimento
-          </p>
-        </div>
+    <section id="experience" ref={sectionRef} className="px-4 py-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="section-shell section-pad">
+          <div className="text-left md:text-center">
+            <p
+              data-reveal
+              className="text-xs uppercase tracking-[0.18em] text-muted-foreground"
+            >
+              Experiência
+            </p>
+            <h2 data-reveal className="mt-3 text-3xl font-bold md:text-4xl">
+              Onde venho concentrando minha experiência
+            </h2>
+            <p
+              data-reveal
+              className="mx-auto mt-4 max-w-3xl text-muted-foreground"
+            >
+              Minha trajetória recente tem sido guiada por backend, arquitetura
+              e práticas que ajudam a manter o sistema compreensível conforme ele cresce.
+            </p>
+          </div>
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border" />
+          <div className="relative mt-10 space-y-5">
+            <div
+              data-reveal-line
+              className="absolute left-[11px] top-0 h-full w-[2px] bg-gradient-to-b from-cyan-300/90 via-cyan-300/20 to-transparent md:hidden"
+            />
 
-          {/* Experience Cards */}
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className={`relative flex flex-col md:flex-row gap-8 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
+            {experiences.map((item) => (
+              <article
+                key={item.title}
+                data-reveal
+                className="glass-panel min-w-0 p-5 text-left md:p-6"
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 -ml-2 rounded-full bg-primary border-4 border-background z-10" />
-
-                {/* Content */}
-                <div
-                  className={`flex-1 ${
-                    index % 2 === 0 ? "md:pr-16" : "md:pl-16"
-                  } pl-20 md:pl-0`}
-                >
-                  <div className="bg-card/50 backdrop-blur-sm rounded-lg shadow-xl border border-border hover:border-primary/50 transition-all duration-300 group hover:scale-105 overflow-hidden">
-                    {/* Terminal Header - Simples */}
-                    <div className="bg-card/80 backdrop-blur px-4 py-2.5 border-b border-border">
-                      <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-                        <span className="text-primary">❯</span>
-                        <span>{exp.company}</span>
-                        <span className="text-primary/50">·</span>
-                        <span>{exp.period}</span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      {/* Title */}
-                      <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
-                        {exp.title}
-                      </h3>
-
-                      {/* Location */}
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
-                        <MapPin className="w-4 h-4" />
-                        <span>{exp.location}</span>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-muted-foreground mb-4 leading-relaxed">
-                        {exp.description}
-                      </p>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2">
-                        {exp.tags.map((tag, tagIndex) => (
-                          <span
-                            key={tagIndex}
-                            className="px-2.5 py-1 text-xs rounded bg-card/60 text-primary border border-border hover:border-primary/50 transition-all font-mono"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center rounded-full border border-cyan-300/35 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                    {item.period}
+                  </span>
+                  <span className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                    {item.company}
+                  </span>
                 </div>
 
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block flex-1" />
-              </div>
+                <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+
+                <div className="mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <MapPin className="h-4 w-4" />
+                  {item.location}
+                </div>
+
+                <p className="mt-4 break-words text-sm leading-relaxed text-muted-foreground">
+                  {item.description}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border/85 bg-background/55 px-3 py-1 text-xs font-medium text-foreground/85"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
             ))}
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-6">
-            Interessado em trabalhar juntos?
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-medium"
-          >
-            Entre em Contato
-            <ArrowRight className="w-4 h-4" />
-          </a>
         </div>
       </div>
     </section>
   );
 };
-
-function ArrowRight({ className }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}

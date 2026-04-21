@@ -1,108 +1,143 @@
-import { ArrowDown } from "lucide-react";
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ArrowDownRight, Sparkles } from "lucide-react";
 
 const techStack = [
-  {
-    name: "Python",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  },
-  {
-    name: "TypeScript",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-  },
-  {
-    name: "Node.js",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  },
-  {
-    name: "Next.js",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-    darkIcon: true,
-  },
-  {
-    name: "React",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  },
-  {
-    name: "Git",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-  },
-  {
-    name: "Docker",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-  },
-  {
-    name: "PostgreSQL",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-  },
-  {
-    name: "Pandas",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
-  },
-  {
-    name: "NumPy",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
-  },
-  {
-    name: "Scikit-learn",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg",
-  },
+  "Tailwind CSS 4",
+  "TypeScript",
+  "Node.js",
+  "Fastify",
+  "PostgreSQL",
+  "Supabase",
+  "SQLite",
+  "Docker",
+  "Vitest",
+  "Clean Architecture",
+  "DDD",
+  "Prisma",
+  "Next.js 15",
 ];
 
 export const HeroSection = () => {
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (!sectionRef.current) {
+      return undefined;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      return undefined;
+    }
+
+    const context = gsap.context(() => {
+      gsap.from("[data-hero-intro]", {
+        y: 22,
+        opacity: 0,
+        duration: 0.85,
+        ease: "power3.out",
+        stagger: 0.1,
+      });
+
+      gsap.from("[data-hero-marquee]", {
+        y: 14,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.35,
+        ease: "power2.out",
+      });
+    }, sectionRef);
+
+    return () => context.revert();
+  }, []);
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center"
+      ref={sectionRef}
+      className="relative flex min-h-screen items-center px-4 pb-14 pt-32"
     >
-      <div className="container max-w-4xl mx-auto text-center z-10">
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            <span className="opacity-0 animate-fade-in">Olá, eu sou</span>
-            <span className="text-primary opacity-0 animate-fade-in-delay-1">
-              {" "}
-              Fabrício
-            </span>
-            <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2">
-              Fontenele
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            Desenvolvedor Full Stack apaixonado por criar soluções modernas e
-            escaláveis.
-          </p>
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="text-left">
+            <div
+              data-hero-intro
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              Backend e Engenharia de Software
+            </div>
 
-          {/* Tech Stack Carousel */}
-          <div className="opacity-0 animate-fade-in-delay-4 overflow-hidden py-8">
-            <div className="flex gap-8 animate-scroll">
-              {[...techStack, ...techStack].map((tech, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-all duration-300 hover:scale-110 bg-card dark:bg-transparent rounded-lg p-2 border-2 border-border dark:border-transparent shadow-sm dark:shadow-none"
-                  title={tech.name}
-                >
-                  <img
-                    src={tech.icon}
-                    alt={tech.name}
-                    className={`w-full h-full object-contain ${
-                      tech.darkIcon ? "dark:invert" : ""
-                    }`}
-                  />
-                </div>
-              ))}
+            <h1
+              data-hero-intro
+              className="max-w-3xl text-4xl font-bold leading-tight md:text-6xl"
+            >
+              Oi, eu sou o
+              <span className="text-glow text-primary"> Fabrício Fontenele</span>.
+            </h1>
+
+            <p
+              data-hero-intro
+              className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
+            >
+              Sou desenvolvedor com foco em backend, engenharia de software e
+              arquitetura. Trabalho na construção de APIs, regras de negócio e
+              sistemas que precisam crescer com clareza, testes e boa manutenção.
+            </p>
+
+            <div data-hero-intro className="mt-9 flex flex-wrap gap-3">
+              <a href="#projects" className="cosmic-button">
+                Ver projetos
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground/85 transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                Conversar sobre projeto
+                <ArrowDownRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
-          <div className="opacity-0 animate-fade-in-delay-4">
-            <a href="#projects" className="cosmic-button">
-              Veja meu Trabalho
-            </a>
+          <div data-hero-intro className="section-shell section-pad text-left">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              Disponível para
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">Freelance e colaboração técnica</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Atuo em projetos que exigem backend bem estruturado, domínio bem
+              modelado e decisões técnicas pensadas para o longo prazo.
+            </p>
+
+            <div className="mt-6 space-y-2 text-sm text-foreground/85">
+              <p>• APIs e serviços orientados a domínio</p>
+              <p>• Arquitetura modular com foco em evolução</p>
+              <p>• Testes, persistência relacional e deploy confiável</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-        <span className="text-sm text-muted-foreground mb-2">Explorar</span>
-        <ArrowDown className="h-5 w-5 text-primary" />
+        <div
+          data-hero-marquee
+          className="mt-14 overflow-hidden rounded-xl border border-border/80 bg-card/55 py-4"
+        >
+          <div className="flex w-max animate-scroll gap-3 px-4">
+            {[...techStack, ...techStack].map((item, index) => (
+              <span
+                key={`${item}-${index}`}
+                className="rounded-full border border-border/75 bg-background/60 px-3 py-1.5 text-xs font-medium text-foreground/85"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

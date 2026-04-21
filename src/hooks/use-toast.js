@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 
 const TOAST_LIMIT = 1;
@@ -132,7 +134,7 @@ function useToast() {
         listeners.splice(index, 1);
       }
     };
-  }, [state]);
+  }, []);
 
   return {
     ...state,

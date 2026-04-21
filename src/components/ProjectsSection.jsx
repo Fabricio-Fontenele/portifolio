@@ -1,171 +1,154 @@
+"use client";
+
 import { ArrowRight, ExternalLink, GithubIcon } from "lucide-react";
+import { useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const projects = [
   {
     id: 1,
     title: "BarberHub",
     description:
-      "Plataforma completa de agendamento para barbearias com gestão de horários, clientes e serviços.",
-    Image: "/images/placeholder-project.svg",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma"],
-    DemoUrl: "#",
-    gitHubUrl: "https://github.com/Fabricio-Fontenele/BarberHub.git",
+      "Plataforma de agendamento com foco em modelagem de regras de negócio, persistência relacional e organização do backend para a evolução do produto.",
+    tags: ["TypeScript", "Prisma", "PostgreSQL", "Clean Architecture"],
+    status: "Em desenvolvimento",
+    demoUrl: "#",
+    githubUrl: "https://github.com/Fabricio-Fontenele/BarberHub.git",
   },
   {
     id: 2,
     title: "E-commerce",
     description:
-      "Sistema completo de loja online com integração de pagamentos via Stripe e painel administrativo.",
-    Image: "/images/ecommerce.png",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "PostgreSQL",
-      "Drizzle",
-      "Stripe",
-    ],
-    DemoUrl: "https://ecommerce-eight-rosy-36.vercel.app/",
-    gitHubUrl: "https://github.com/Fabricio-Fontenele/Ecommerce.git",
+      "E-commerce com backend organizado para fluxos de catálogo, pagamento e administração, priorizando consistência de domínio e integrações.",
+    tags: ["TypeScript", "PostgreSQL", "Stripe", "Docker"],
+    status: "Em produção",
+    demoUrl: "https://ecommerce-eight-rosy-36.vercel.app/",
+    githubUrl: "https://github.com/Fabricio-Fontenele/Ecommerce.git",
   },
   {
     id: 3,
     title: "NeoLife",
     description:
-      "Sistema de gestão de Pronto Socorro focado na triagem e classificação de risco de pacientes.",
-    Image: "/images/placeholder-project.svg",
-    tags: ["Vue.js", "JavaScript", "Express", "SQLite", "Prisma", "Docker"],
-    DemoUrl: "#",
-    gitHubUrl: "https://github.com/oAnjophb/NeoLife",
+      "Sistema para pronto-socorro com regras operacionais, organização de atendimento e preocupação com o fluxo de dados entre módulos.",
+    tags: ["Express", "SQLite", "Docker", "Arquitetura de Software"],
+    status: "Em desenvolvimento",
+    demoUrl: "#",
+    githubUrl: "https://github.com/oAnjophb/NeoLife",
   },
 ];
 
+const statusStyles = {
+  "Em produção": "border-emerald-400/30 bg-emerald-400/10 text-emerald-200",
+  "Em desenvolvimento": "border-amber-300/30 bg-amber-300/10 text-amber-100",
+};
+
 export const ProjectsSection = () => {
+  const sectionRef = useRef(null);
+  useSectionReveal(sectionRef);
+
   const { toast } = useToast();
 
-  const handleDemoClick = (e, demoUrl, projectTitle) => {
-    if (demoUrl === "#") {
-      e.preventDefault();
-      toast({
-        title: "Projeto em desenvolvimento",
-        description: `O deploy do ${projectTitle} ainda não está disponível. Em breve estará no ar!`,
-        duration: 3000,
-      });
-    }
+  const handleDemoClick = (event, demoUrl, projectTitle) => {
+    if (demoUrl !== "#") return;
+
+    event.preventDefault();
+    toast({
+      title: "Deploy em progresso",
+      description: `O projeto ${projectTitle} ainda não possui demo pública.`,
+      duration: 2800,
+    });
   };
 
   return (
-    <section id="projects" className="py-24 px-4 relative">
+    <section id="projects" ref={sectionRef} className="px-4 py-24">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Projetos em <span className="text-primary">Destaque</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Algumas das soluções que desenvolvi recentemente
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="group bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-1 flex flex-col overflow-hidden"
-              style={{
-                animationDelay: `${index * 100}ms`,
-              }}
+        <div className="section-shell section-pad">
+          <div className="mb-10 text-left md:text-center">
+            <p
+              data-reveal
+              className="text-xs uppercase tracking-[0.18em] text-muted-foreground"
             >
-              {/* Terminal Header */}
-              <div className="bg-card backdrop-blur px-4 py-2.5 flex items-center gap-2 border-b border-border">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/60 group-hover:bg-red-500 transition-colors" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/60 group-hover:bg-yellow-500 transition-colors" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/60 group-hover:bg-green-500 transition-colors" />
+              Projetos
+            </p>
+            <h2 data-reveal className="mt-3 text-3xl font-bold md:text-4xl">
+              Projetos que representam meu momento atual
+            </h2>
+            <p
+              data-reveal
+              className="mx-auto mt-4 max-w-3xl text-muted-foreground"
+            >
+              Selecionei projetos em que consigo mostrar melhor como penso
+              backend, modelagem, integração e organização técnica.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {projects.map((project) => (
+              <article
+                key={project.id}
+                data-reveal
+                className="glass-panel flex h-full min-w-0 flex-col p-5"
+              >
+                <div className="flex min-w-0 flex-wrap items-start justify-between gap-2">
+                  <h3 className="min-w-0 break-words text-xl font-semibold">
+                    {project.title}
+                  </h3>
+                  <span
+                    className={`max-w-full break-words rounded-full border px-3 py-1 text-[11px] font-semibold ${statusStyles[project.status]}`}
+                  >
+                    {project.status}
+                  </span>
                 </div>
-              </div>
 
-              {/* Terminal Content */}
-              <div className="p-5 flex flex-col flex-grow font-mono text-sm bg-gradient-to-b from-card/30 to-card/60">
-                {/* Command prompt */}
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-primary">❯</span>
-                    <span className="text-primary/80">cat</span>
-                    <span className="text-foreground/80">{project.title}.md</span>
-                    <span className="animate-pulse text-muted-foreground">▋</span>
-                  </div>
-                </div>
-
-                {/* Project Title */}
-                <h3 className="text-xl font-bold mb-3 text-primary group-hover:text-primary/80 transition-colors font-sans">
-                  # {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-muted-foreground mb-4 flex-grow text-sm leading-relaxed font-sans">
+                <p className="mt-4 break-words text-sm leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
 
-                {/* Technologies */}
-                <div className="mb-4">
-                  <div className="text-xs text-primary/70 mb-2 font-mono">
-                    ## stack:
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="px-2.5 py-1 text-xs rounded bg-card/60 text-primary border border-border hover:border-primary/50 hover:bg-card transition-all font-mono"
-                      >
-                        [{tag}]
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <p className="mt-5 break-words text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground/90">Stack:</span>{" "}
+                  {project.tags.join(" · ")}
+                </p>
 
-                {/* Command Buttons */}
-                <div className="flex gap-2 mt-auto pt-4 border-t border-border/30">
+                <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                   <a
-                    href={project.DemoUrl}
+                    href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 px-3 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded font-mono text-xs font-bold transition-all hover:shadow-lg hover:shadow-primary/30 flex items-center justify-center gap-2 cursor-pointer"
-                    onClick={(e) =>
-                      handleDemoClick(e, project.DemoUrl, project.title)
+                    onClick={(event) =>
+                      handleDemoClick(event, project.demoUrl, project.title)
                     }
+                    className="inline-flex max-w-full items-center gap-1.5 break-all text-sm font-semibold text-primary transition-colors hover:text-primary/80"
                   >
-                    Ver Demo
+                    Ver projeto
+                    <ExternalLink className="h-4 w-4" />
                   </a>
+
                   <a
-                    href={project.gitHubUrl}
+                    href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 bg-card/60 hover:bg-card text-primary rounded font-mono text-xs font-bold transition-all border border-border hover:border-primary/50 flex items-center justify-center gap-2"
-                    onClick={(e) =>
-                      project.gitHubUrl === "#" && e.preventDefault()
-                    }
+                    className="inline-flex max-w-full items-center gap-1.5 break-all text-sm font-semibold text-foreground/80 transition-colors hover:text-primary"
                   >
-                    <GithubIcon size={14} />
-                    git clone
+                    Código-fonte
+                    <GithubIcon className="h-4 w-4" />
                   </a>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
 
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <a
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all hover:scale-105 font-medium"
-            href="https://github.com/Fabricio-Fontenele"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ver mais no GitHub
-            <ArrowRight size={18} />
-          </a>
+          <div data-reveal className="mt-10 text-center">
+            <a
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+              href="https://github.com/Fabricio-Fontenele"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver mais no GitHub
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
