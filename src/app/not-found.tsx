@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4 text-foreground">
@@ -9,9 +11,9 @@ export default function NotFound() {
         <p className="mt-3 text-sm text-muted-foreground">
           O conteúdo solicitado não está disponível neste endereço.
         </p>
-        <a href="/" className="cosmic-button mt-6 inline-flex">
+        <Link href="/" className="cosmic-button mt-6 inline-flex">
           Voltar para o início
-        </a>
+        </Link>
       </div>
     </main>
   );
