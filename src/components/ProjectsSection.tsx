@@ -23,7 +23,7 @@ const projects: Project[] = [
     id: 1,
     title: "GymPass Style API",
     description:
-      "API de exemplo inspirada no GymPass, focada em clean architecture, principios do SOLID.",
+      "API inspirada no GymPass, com autenticação, controle de check-ins, regras de negócio, testes automatizados e separação em camadas seguindo Clean Architecture e SOLID.",
     tags: [
       "TypeScript",
       "Prisma",

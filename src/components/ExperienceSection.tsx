@@ -24,13 +24,13 @@ const experiences: Experience[] = [
     tags: ["TypeScript", "Node.js", "PostgreSQL", "Supabase"],
   },
   {
-    title: "Projetos com foco em arquitetura",
+    title: "Estagiário em Desenvolvimento Back-End",
     company: "UESPI",
     location: "Parnaíba, PI",
-    period: "2025 - Atual",
+    period: "2026 - Atual",
     description:
-      "Estudo e aplicação prática de separação em camadas, responsabilidades de domínio, integração com banco relacional e padrões de projeto.",
-    tags: ["Clean Architecture", "DDD", "Prisma", "Vitest"],
+      "Atuação no Departamento de Tecnologia da Informação e Comunicação da UESPI, com foco em desenvolvimento, manutenção e evolução de sistemas institucionais.",
+    tags: ["Clean Architecture", "DDD", "TypeScript", "Vitest"],
   },
   {
     title: "Sistemas de Computação",
@@ -66,7 +66,8 @@ export const ExperienceSection = () => {
               className="mx-auto mt-4 max-w-3xl text-muted-foreground"
             >
               Minha trajetória recente tem sido guiada por backend, arquitetura
-              e práticas que ajudam a manter o sistema compreensível conforme ele cresce.
+              e práticas que ajudam a manter o sistema compreensível conforme
+              ele cresce.
             </p>
           </div>
 
